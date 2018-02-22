@@ -6,9 +6,22 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-
+    "chromedriver": "^2.35.0",
+    "jasmine": "^3.0.0",
+    "jasmine-debug": "^0.1.1",
+    "selenium-standalone": "^6.12.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "scripts": {
-    
+    "test_init": "JASMINE_CONFIG_PATH=./spec/support/jasmine.json; ./node_modules/jasmine/bin/jasmine.js init",
+    "test": "JASMINE_CONFIG_PATH=./spec/support/jasmine.json; ./node_modules/jasmine/bin/jasmine.js",
+    "smoke": "./node_modules/jasmine/bin/jasmine.js ./spec/smoke/logo.spec.js",
+    "example": "./node_modules/jasmine/bin/jasmine.js ./spec/jasmine_examples/PlayerSpec.js",
+    "another-minimal": "./node_modules/jasmine/bin/jasmine.js spec/another-minimal-test.spec.js",
+    "another-minimal2": "JASMINE_CONFIG_PATH=./spec/support/jasmine.json; ./node_modules/jasmine/bin/jasmine.js spec/another-minimal-test.spec.js",
+    "another-minimal3": "JASMINE_CONFIG_PATH=./spec/support/jasmine.json; ./node_modules/jasmine/bin/jasmine.js spec/another-minimal-test-factored.spec.js",
+    "selenium-standalone-install": "./node_modules/selenium-standalone/bin/selenium-standalone install",
+    "selenium-standalone-start": "./node_modules/selenium-standalone/bin/selenium-standalone start",
+    "chromedriver-install": "node node_modules/chromedriver/install.js"
   }
 }
