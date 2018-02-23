@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test:visual": "$(npm bin)/cypress open",
-    "test:run": "$(npm bin)/cypress run"
+    "test:run": "$(npm bin)/cypress run",
+    "test:debug": "DEBUG=cypress:* $(npm bin)/cypress run --spec cypress/integration/origin_web_console_simple_spec.js"
   }
 }
