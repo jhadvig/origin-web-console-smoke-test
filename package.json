@@ -6,7 +6,9 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-    "cypress": "^2.0.3"
   },
-  "scripts": {}
+  "scripts": {
+    "test:visual": "$(npm bin)/cypress open",
+    "test:run": "$(npm bin)/cypress run"
+  }
 }

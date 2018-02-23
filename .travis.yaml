@@ -1,0 +1,12 @@
+# https://docs.cypress.io/guides/guides/continuous-integration.html#Travis
+language: node_js
+node_js:
+  - 6
+cache:
+  directories:
+    - ~/.npm
+    - node_modules
+install:
+  - npm install
+script:
+  - $(npm bin)/cypress run --record
