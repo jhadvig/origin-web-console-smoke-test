@@ -1,4 +1,5 @@
 node_modules
+test_reports
 npm-debug.log
 .tmp
 .sass-cache

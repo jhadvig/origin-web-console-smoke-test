@@ -6,9 +6,24 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-
+    "selenium-standalone": "^6.12.0",
+    "wdio-allure-reporter": "^0.3.2",
+    "wdio-json-reporter": "^0.3.1",
+    "wdio-spec-reporter": "^0.1.3",
+    "webdriverio": "^4.10.2",
+    "wdio-dot-reporter": "0.0.9",
+    "wdio-junit-reporter": "^0.3.1",
+    "wdio-mocha-framework": "^0.5.12"
   },
   "scripts": {
-    
+    "selenium:install": "$(npm bin)/selenium-standalone install",
+    "selenium:start": "$(npm bin)/selenium-standalone start",
+    "selenium:stop": "pkill -f selenium-standalone",
+    "selenium": "yarn run selenium:install && yarn run selenium:start",
+    "selenium:headless": "xvfb-run --server-args='-screen 0, 1366x768x24' $(npm bin)/selenium-standalone start",
+    "webdriverio:config": "$(npm bin)/wdio config",
+    "webdriver:run": "$(npm bin)/wdio wdio.conf.js",
+    "test:run_once": "yarn run selenium && yarn run webdriver:run",
+    "test": "yarn run webdriver:run"
   }
 }

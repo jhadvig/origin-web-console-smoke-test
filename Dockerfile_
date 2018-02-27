@@ -1,0 +1,46 @@
+FROM alpine:latest
+# yikes, this image is 190MB+
+# FROM node:9.6.1
+# this node.js image is only 2MB!
+# FROM mhart/alpine-node:latest
+# Starting with a selenium base would be nice, but the versions are old:
+# https://github.com/SeleniumHQ/docker-selenium/blob/master/StandaloneChrome/Dockerfile
+# FROM selenium/node-chrome:latest
+
+# vars
+ENV TMP /tmp/install
+ENV HOME /opt/app
+ENV NODE_VERSION="v9.5.0"
+ENV YARN_VERSION="v1.3.2"
+
+# perms for places we will install things (like yarn)
+# this is actually... bad.  what all will we change?
+RUN sudo chown -R $(whoami) /usr/local/
+
+#  use image caching/layering by installing dependencies separate from app
+ADD package.json /tmp/install/package.json
+
+# install yarn
+RUN cd /tmp && \
+    wget --quiet -O /tmp/yarn.tar.gz https://github.com/yarnpkg/yarn/releases/download/${YARN_VERSION}/yarn-${YARN_VERSION}.tar.gz && \
+    tar xf yarn.tar.gz && \
+    rm -f /tmp/yarn.tar.gz && \
+    mv /tmp/yarn-${YARN_VERSION} /usr/local/yarn && \
+    ln -s /usr/local/yarn/bin/yarn /usr/local/bin/yarn
+
+# then install dependencies
+RUN yarn install
+
+# /opt is fairly standard location for add-ons in linux
+RUN mkdir -p /opt/app \
+    && cp -a /tmp/install/node_modules /opt/app
+
+WORKDIR /opt/app
+
+# install the app code now, layer caching, see above comment
+ADD . /opt/app
+
+EXPOSE 3000
+
+# this command will start up selenium then run the webdriver.io tests
+CMD ["yarn", "test:run_once"]
