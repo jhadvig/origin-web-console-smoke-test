@@ -7,10 +7,11 @@ metadata:
 spec:
   containers:
   - name: origin-web-console-smoke-test
-    image: benjaminapetersen/origin-web-console-smoke-test
+    image: benjaminapetersen/origin-web-console-smoke-test:v0.0.6
     env:
     - name: CONSOLE_PUBLIC_URL
-      value: https://192.168.1.69:8443
+      # NOTE: be sure to update this to be the correct IP address!
+      value: https://10.13.129.111:8443
     - name: CONSOLE_USER_NAME
       value: bob
     - name: CONSOLE_PASSWORD

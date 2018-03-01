@@ -24,6 +24,12 @@ const junitReporter = new jasmineReporters.JUnitXmlReporter({
   filePrefix: 'e2e-results'
 });
 
+// Solve a silly problem in Node.js right now.
+process.on('unhandledRejection', error => {
+  // Will print "unhandledRejection err is not defined"
+  console.log('unhandledRejection', error.message);
+});
+
 exports.config = {
   // skip webdriver manager, selenium, etc
   directConnect: true,

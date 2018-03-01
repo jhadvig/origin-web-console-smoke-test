@@ -19,11 +19,12 @@ spec:
       containers:
       - name: origin-web-console-smoke-test
         # see if we find it on dockerhub
-        image: benjaminapetersen/origin-web-console-smoke-test
+        image: benjaminapetersen/origin-web-console-smoke-test:v0.0.2
         # i think the env vars will work here...
         env:
         - name: CONSOLE_PUBLIC_URL
-          value: https://192.168.1.69:8443
+          # NOTE: be sure to update this to be the correct IP address!
+          value: https://10.192.214.216:8443
         - name: CONSOLE_USER_NAME
           value: bob
         - name: CONSOLE_PASSWORD
