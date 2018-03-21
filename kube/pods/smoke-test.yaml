@@ -7,12 +7,9 @@ metadata:
 spec:
   containers:
   - name: origin-web-console-smoke-test
-    image: benjaminapetersen/origin-web-console-smoke-test:v0.0.9
-    imagePullPolicy: IfNotPresent
+    image: jhadvig/protractor-smoke-test:latest
+    restartPolicy: Never
+    imagePullPolicy: Always
     env:
     - name: CONSOLE_URL
-      value: https://10.192.213.145:8443
-    - name: CONSOLE_USER
-      value: bob
-    - name: CONSOLE_PASSWORD
-      value: bob
+      value: https://192.168.100.3:8443

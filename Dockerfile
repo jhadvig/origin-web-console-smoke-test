@@ -19,9 +19,15 @@ RUN npm install -g protractor@4.0.14 minimist@1.2.0 && \
 
 COPY protractor.sh /
 ADD test /protractor/
-COPY package.json /protractor/package.json
 
 RUN cd /protractor && npm install
 
 WORKDIR /protractor
+
+RUN mkdir -p /.pki/nssdb && \
+    certutil -d /.pki/nssdb -N && \
+    /bin/bash -c 'chmod -R 777 /.pki' && \
+    /bin/bash -c 'chmod -R 777 /protractor.sh' && \
+    /bin/bash -c 'chmod -R 777 /protractor'
+
 ENTRYPOINT ["/protractor.sh"]
