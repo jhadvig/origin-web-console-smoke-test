@@ -5,10 +5,10 @@ metadata:
   labels:
     app: origin-web-console-smoke-test
 spec:
+  restartPolicy: Never
   containers:
   - name: origin-web-console-smoke-test
     image: jhadvig/protractor-smoke-test:latest
-    restartPolicy: Never
     imagePullPolicy: Always
     env:
     - name: CONSOLE_URL
